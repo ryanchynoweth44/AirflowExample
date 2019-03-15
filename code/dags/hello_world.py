@@ -21,13 +21,15 @@ default_args = {
 
 ## Create a DAG Object to attach our tasks to
 ## CRON Help - https://crontab.guru/#0_*_*_*_*  i.e. run every 5 minutes
-dag = DAG('hellow_world_airflow_me', default_args=default_args, schedule_interval='*/5 * * * *')
+dag = DAG('hello_world_airflow_me', default_args=default_args, schedule_interval='*/5 * * * *')
 ## each task will need to be indented. 
 ## alternatively we could attach each task separately
 
 print_hello = BashOperator(task_id='print_hello', bash_command='echo "hello"', dag=dag)
 sleep = BashOperator(task_id='sleep', bash_command='sleep 5', dag=dag)
 print_world = PythonOperator(task_id='print_world', python_callable=hello_world_tasks.print_world, dag=dag)
+sleep_two = BashOperator(task_id='sleep2', bash_command='sleep 5', dag=dag)
+print_file = PythonOperator(task_id='write_file', python_callable=hello_world_tasks.test_write_file, dag=dag)
 
 
-print_hello >> sleep >> print_world
+print_hello >> sleep >> print_world >> sleep_two >> print_file

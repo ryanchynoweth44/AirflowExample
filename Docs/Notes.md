@@ -9,7 +9,7 @@
 
 1. Next set your airflow home to the directory you with. Please note that the dags will need to be in this AIRFLOW_HOME folder in order for them to be picked up by the airflow scheduler.  
     ```
-    export AIRFLOW_HOME="~/Documents/git/AirflowExample/code/config"
+    export AIRFLOW_HOME="~/Documents/git/AirflowExample/code"
     ```
 
 1. Initialize the database. By default it will be SQLlite but in production you can use MySQL or PostgresSQL.
@@ -19,7 +19,7 @@
 
 1. You can start the web server by running the following command. There is a built in UI to start, stop, and monitor the tasks you create. 
     ```
-    airflow webserver --port 8080 
+    airflow webserver --port 8080
     ```
     The UI looks like the image below. 
 
@@ -51,4 +51,16 @@ Tasks are represented by operators that either perform actions, transfer data, o
     - run `airflow scheduler`
 
 
+
+
+## Deleting Example DAGs
+In the `airflow.cfg` file there is a line that says `load_examples = True` we will want to set this variable to `Flase`.  
+
+
+## Making Code Edits
+
+Note that changes to your dags are automatically picked up by the scheduler. Take for example the `hello_world_tasks.py` file, there is a function called `test_write_file`. To see code changes automatically get picked up simply change the string that we are writing to file. By default we are writing a datetime stamp, but this can be anything you want.  
+
+## DevOps
+Since Airflow is simply a solution and a web server, the deployment is like any other web app deployment. 
 
