@@ -64,3 +64,6 @@ Note that changes to your dags are automatically picked up by the scheduler. Tak
 ## DevOps
 Since Airflow is simply a solution and a web server, the deployment is like any other web app deployment. 
 
+
+## Docker Link
+https://medium.com/@shahnewazk/dockerizing-airflow-58a8888bd72d
