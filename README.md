@@ -9,15 +9,16 @@ This repository aims to provide an end to end example of [Apache Airflow](http:/
 
 
 ## Blog
-- [Setting up a Hyper-V Ubuntu VM for development](./Docs/LinuxDevelopmentFromAWindowsGuy.md)
+This demo is accompanied with a [blog]() discussing why data engineers and data scientists should use Apache Airflow to schedule, monitor, orchestrate, and create data pipelines. 
 
 
 ## Demo
 The demo is broken into logical sections. Please complete in the following order:  
-1. Create Ubuntu VM
+1. [Create Ubuntu VM](./Docs/01_CreateUbuntuVM.md)
     - Note, I will be using a Hyper-V Virtual Machine on my local computer
-1. Configure workspace 
 
-1. Create Hello World DAG
+1. [Configure workspace](./Docs/02_ConfigureWorkspace.md) 
 
-1. Simple Data Pipeline with Airflow
+1. [Create Hello World DAG](./Docs/03_HelloWorld.md)
+
+1. [Simple Data Pipeline with Airflow](./Docs/04_AirflowPipeline.md)
