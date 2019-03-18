@@ -1,6 +1,14 @@
 ## Installation
 
 1. Create Conda Environment.
+    ```
+    conda create -n airflowenv python=3.6
+    ```
+
+1. Activate Conda Environment.
+    ```
+    conda activate airflowenv
+    ```
 
 1. Install airflow.
     ```
@@ -12,7 +20,7 @@
     export AIRFLOW_HOME="~/Documents/git/AirflowExample/code"
     ```
 
-1. Initialize the database. By default it will be SQLlite but in production you can use MySQL or PostgresSQL.
+1. Initialize the database. By default it will be SQLite but in production you can use MySQL or PostgresSQL.
     ```
     airflow initdb
     ```
@@ -67,3 +75,13 @@ Since Airflow is simply a solution and a web server, the deployment is like any 
 
 ## Docker Link
 https://medium.com/@shahnewazk/dockerizing-airflow-58a8888bd72d
+
+## Browsing the Airflow Database
+
+SQLite Browser
+```
+sudo apt-get update
+
+sudo apt-get install sqlitebrowser
+```
+
