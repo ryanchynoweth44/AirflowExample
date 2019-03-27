@@ -32,6 +32,11 @@
     The UI looks like the image below. 
 
 
+1. To schedule jobs you will need to start the airflow scheduler.
+    ```
+    airflow scheduler
+    ```
+
 ## Workflows
 
 Workflows are represented by Directed Acyclic Graphs (DAGs) written in Python. Tasks are subcomponents of a DAG and are directional and can be dependent on each other to execute your python scripts as designed. 
