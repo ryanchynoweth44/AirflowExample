@@ -22,3 +22,6 @@ The demo is broken into logical sections. Please complete in the following order
 1. [Create Hello World DAG](./Docs/03_HelloWorld.md)
 
 1. [Simple Data Pipeline with Airflow](./Docs/04_AirflowPipeline.md)
+
+1. [Deploying Data Pipelines to Azure](./Docs/05_DeployingDataPipelines.md)
+
