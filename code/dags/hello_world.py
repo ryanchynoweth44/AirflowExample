@@ -7,7 +7,7 @@ from airflow.operators.python_operator import PythonOperator
 from tasks import hello_world_tasks
 
 
-current_dt = dt.datetime.now()
+current_dt = dt.datetime.utcnow()
 
 ## configure settings that are shared by all tasks in our DAG
 default_args = {
