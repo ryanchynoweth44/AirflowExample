@@ -30,7 +30,7 @@ We will be borrowing the [code](https://github.com/ryanchynoweth44/DataPipelines
 
 1. In this walkthrough we will be using a separate conda environment to develop our data extractor. To set up a new conda environment and install the appropriate library please run the following in an anaconda command prompt. 
     ```
-    conda create -n amlenv python=3.5
+    conda create -n amlenv python=3.6
 
     conda activate amlenv
 
