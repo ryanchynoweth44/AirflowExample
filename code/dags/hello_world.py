@@ -25,10 +25,15 @@ dag = DAG('hello_world_airflow_me', default_args=default_args, schedule_interval
 ## each task will need to be indented. 
 ## alternatively we could attach each task separately
 
+# bash command to print text to command line
 print_hello = BashOperator(task_id='print_hello', bash_command='echo "hello"', dag=dag)
+# bash command to sleep
 sleep = BashOperator(task_id='sleep', bash_command='sleep 5', dag=dag)
+# python command that executes our print world function in our task script
 print_world = PythonOperator(task_id='print_world', python_callable=hello_world_tasks.print_world, dag=dag)
+# bash command to sleep
 sleep_two = BashOperator(task_id='sleep2', bash_command='sleep 5', dag=dag)
+# python command that writes file to file location using our task script
 print_file = PythonOperator(task_id='write_file', python_callable=hello_world_tasks.test_write_file, dag=dag)
 
 

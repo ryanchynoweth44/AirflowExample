@@ -42,12 +42,12 @@ Airflow is now installed and set up on your machine! Before we continue let's co
     airflow webserver --port 8080
     ```
 
-1. **Airflow Scheduler**: The airflow scheduler will automatically pick up and run any new DAGs in your `dag` folder i.e. dag folder located in your `AIRFLOW_HOME` directory. To run the scheduler in union with the UI, you will need to separate terminals both set with the same `AIRFLOW_HOME` directory, then simply execute the following command:   
+1. **Airflow Scheduler**: The airflow scheduler will automatically pick up and run any new DAGs in your `dags` folder i.e. dags folder located in your `AIRFLOW_HOME` directory. To run the scheduler in union with the UI, you will need to separate terminals both set with the same `AIRFLOW_HOME` directory, then simply execute the following command:   
     ```
     airflow scheduler
     ```
 
-
+You have now configured your development environment. Check out the next portion of the demo with a  [hello world example](./03_HelloWorld.md).   
 
 
 
