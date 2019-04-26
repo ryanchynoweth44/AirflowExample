@@ -9,7 +9,6 @@ def init():
     
     
 def run(api_token):
-  try: 
     # api parameters
     city_ids = ['5747882', '5809844', '5799841', '5816449', '5812944', '5786882']
     city_batch = ",".join(city_ids)
@@ -19,6 +18,4 @@ def run(api_token):
     
     return json.loads(response.content)
 
-  except Exception as e: 
-    return str(e)
     
