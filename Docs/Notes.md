@@ -65,7 +65,7 @@ Tasks are represented by operators that either perform actions, transfer data, o
 
 
 ## Deleting Example DAGs
-In the `airflow.cfg` file there is a line that says `load_examples = True` we will want to set this variable to `Flase`.  
+In the `airflow.cfg` file there is a line that says `load_examples = True` we will want to set this variable to `False`.  
 
 
 ## Making Code Edits

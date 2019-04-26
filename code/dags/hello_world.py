@@ -21,7 +21,7 @@ default_args = {
 
 ## Create a DAG Object to attach our tasks to
 ## CRON Help - https://crontab.guru/#0_*_*_*_*  i.e. run every 5 minutes
-dag = DAG('hello_world_airflow_me', default_args=default_args, schedule_interval='*/5 * * * *')
+dag = DAG('hello_world_airflow_me', default_args=default_args, schedule_interval='*/10 * * * *', catchup=False)
 ## each task will need to be indented. 
 ## alternatively we could attach each task separately
 

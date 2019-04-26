@@ -1,6 +1,8 @@
 import sys, os
 import json
 import configparser
+import requests, json
+from azure.datalake.store import core, lib
 
 
 class AppManager(object):
@@ -8,7 +10,7 @@ class AppManager(object):
     This class is a helper class for the data extractor. It supplies function to extract data and write it to adls. 
     """
 
-    def __init__(self, config_file="app_config.conf", env="DEV"):
+    def __init__(self, config_file="dags/tasks/app_config.conf", env="DEV"):
         self.weather_api_token = None
         self.azure_tenant_id = None
         self.azure_subscription_id = None
@@ -42,4 +44,38 @@ class AppManager(object):
         self.aml_resource_group = config.get(env, "AML_RESOURCE_GROUP")
         self.aml_location = config.get(env, "AML_LOCATION")
 
-    
+
+    def connect_adls(self):
+            """
+            Creates a connection to Azure Data Lake Store
+            """
+            adls = None
+            try:
+                token = lib.auth(tenant_id=self.azure_tenant_id, 
+                    client_id=self.client_id, 
+                    client_secret=self.client_secret, 
+                    resource='https://datalake.azure.net/')
+
+                adls = core.AzureDLFileSystem(token, store_name=self.adls_name)
+
+            except Exception as ex:
+                print("Unable to connect to Azure Data Lake! Error: %s" % (str(ex)))
+
+            return adls
+
+    def write_json_file(self, adls, output_path, data):
+        """
+        Writes json files to Azure Data Lake Store
+        :param adls: Instance of ADLS
+        :param output_path: the file path to write to in ADLS
+        :param data: data to write in file. Data must be decoded using .decode('utf8').
+        :return string saying if it successfully wrote data
+        """
+        try:
+            with adls.open(output_path, 'ab') as outfile:
+                outfile.write(json.dumps(data, sort_keys=True, indent=4, separators=(',', ': ')).encode())
+            return "Wrote to ADLS"
+        except IOError as iex:
+            print("ADL Write to File: Error while writing data to file on ADL " + str(iex))
+            return "Unable to write to ADLS"
+        

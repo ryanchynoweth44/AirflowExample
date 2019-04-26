@@ -4,6 +4,13 @@ __pycache__/
 *$py.class
 *.conf
 
+*.log
+*.vscode
+*.db
+*.cfg
+
+
+
 # C extensions
 *.so
 
