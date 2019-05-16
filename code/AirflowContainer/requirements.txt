@@ -1,0 +1,2 @@
+azureml-sdk==1.0.39
+azure-datalake-store==0.0.45

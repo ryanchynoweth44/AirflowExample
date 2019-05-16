@@ -88,3 +88,12 @@ sudo apt-get update
 sudo apt-get install sqlitebrowser
 ```
 
+
+
+
+```
+sudo docker build -t aiflow_dock .
+
+sudo docker run -p 8080:8080 airflow_dock 
+
+```

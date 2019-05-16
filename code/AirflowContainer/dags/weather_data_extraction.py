@@ -22,7 +22,7 @@ default_args = {
 
 
 ## CRON Help - https://crontab.guru/
-dag = DAG('weather_data_extraction', default_args=default_args, schedule_interval='*/30 * * * *')
+dag = DAG('weather_data_extraction', default_args=default_args, schedule_interval='*/30 * * * *', catchup=False)
 
-get_weather_data = PythonOperator(task_id='get_weather_data', provide_context=True, python_callable=aml_tasks.get_aml_service_data, op_kwargs={'service_name': 'weatherdataextractor', 'output_path': output_weather_data_path}, dag=dag, catchup=False )
+get_weather_data = PythonOperator(task_id='get_weather_data', provide_context=True, python_callable=aml_tasks.get_aml_service_data, op_kwargs={'service_name': 'weatherdataextractor', 'output_path': output_weather_data_path}, dag=dag)
 

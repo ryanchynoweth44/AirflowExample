@@ -1,4 +1,5 @@
 import datetime as dt
+from datetime import timedelta
 import os, sys
 from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
@@ -8,11 +9,12 @@ from tasks import hello_world_tasks
 
 
 current_dt = dt.datetime.utcnow()
+start_date = dt.datetime(current_dt.year, current_dt.month, current_dt.day)
 
 ## configure settings that are shared by all tasks in our DAG
 default_args = {
     'owner': 'Ryan Chynoweth',
-    'start_date': current_dt,
+    'start_date': start_date,
     'retries': 1,
     'retry_delay': dt.timedelta(minutes=5),
 }
@@ -20,7 +22,7 @@ default_args = {
 
 
 ## Create a DAG Object to attach our tasks to
-## CRON Help - https://crontab.guru/#0_*_*_*_*  i.e. run every 5 minutes
+## CRON Help - https://crontab.guru/#0_*_*_*_*  i.e. run every 5 minutes         
 dag = DAG('hello_world_airflow_me', default_args=default_args, schedule_interval='*/10 * * * *', catchup=False)
 ## each task will need to be indented. 
 ## alternatively we could attach each task separately

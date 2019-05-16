@@ -14,7 +14,7 @@ This demo is accompanied with a [blog]() discussing why data engineers and data 
 
 ## Demo
 The demo is broken into logical sections. Please complete in the following order:  
-1. [Create Ubuntu VM](./Docs/01_CreateUbuntuVM.md)
+1. [Create Ubuntu VM](https://ryansdataspot.com/2019/05/07/linux-development-from-a-windows-guy/)
     - Note, I will be using a Hyper-V Virtual Machine on my local computer
 
 1. [Configure workspace](./Docs/02_ConfigureWorkspace.md) 

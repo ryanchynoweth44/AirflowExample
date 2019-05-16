@@ -12,7 +12,7 @@ In this demo we will be coding in Python, and using the Anaconda distribution so
 
 1. Open a terminal and create a conda environment to run Airflow. 
     ```
-    conda create -n airflow python3.6
+    conda create -n airflow python=3.6
     ```
 
 1. Activate your newly create conda environment. We will be running airflow through this conda environment.  
