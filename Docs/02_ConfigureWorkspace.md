@@ -1,4 +1,4 @@
-## Configuring your workspace for Airflow
+# Configuring your workspace for Airflow
 
 In this demo we are working with Apache Airflow to create, schedule and monitor our data pipeline jobs. Since Apache Airflow does not support Windows we will be working of a Hyper-V VM with a Ubuntu operating system, please [create a virtual machine](./01_CreateUbuntuVM.md) if you have not done so. 
 
@@ -10,7 +10,7 @@ In this demo we will be coding in Python, and using the Anaconda distribution so
 1. Next we will want to download and install the Python 3.7 version of [Anaconda](https://repo.anaconda.com/archive/Anaconda3-2018.12-Linux-x86_64.sh). We will be creating a virtual environment using Anaconda, for more information on how to create and use virtual environments with VS Code check out this [blog](https://ryansdataspot.com/2019/02/14/anaconda-environments-in-visual-studio-code/) I wrote. 
 
 
-1. Open a terminal and create a conda environment to run Airflow. 
+1. Open a terminal and create a conda environment to run Airflow, note that it is a python 3.6 environment.
     ```
     conda create -n airflow python=3.6
     ```

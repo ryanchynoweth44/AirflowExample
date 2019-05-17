@@ -1,11 +1,11 @@
-## Linux Development From a Windows Guy
+# Linux Development From a Windows Guy
 
 I have always really liked my Windows machines, and for the longest time I stuck to it even when specific machine learning libraries weren't supported on Windows. About a year ago I finally gave in and started using Linux distribution for about a third of my data science work. In addition to being able to use more data science libraries, I have been deploying a lot of python code using Docker, which runs on Linux operating systems so I thought it would be better to develop using Linux as well. 
 
 To be completely honest there are a ton of resources on the internet that walk you through setting up a Linux Hyper-V VM on windows (and probably better than this one), but I am writing a demo of a popular Auto ML library, MLBox, and it is not yet supported on Windows, therefore, this will serve as the first step of the demo. If you are interested in checking out the demo there is a [blog]() and step by step walk through on my [GitHub](https://github.com/ryanchynoweth44/AutoMLExamples).  
 
 
-### Create a Linux Virtual Machine
+## Create a Linux Virtual Machine
 
 
 1. My favorite way to work with Linux is to create a Hyper-V VM locally so that it is easy to connect to. To enable the Hyper-V open your start menu and search for "Turn Windows features on or off".   

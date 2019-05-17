@@ -1,6 +1,6 @@
-## Apache Airflow Hello World
+# Apache Airflow Hello World
 
-1. Create a working directory. In this repository, my working directory is [`code`.](../code)
+1. Create a working directory. In this repository, my working directory is [`code/AirflowContainer`.](../code/AirflowContainer)
 
 1. In your working directory create a `dags` folder, with a subfolder called `tasks`. 
 

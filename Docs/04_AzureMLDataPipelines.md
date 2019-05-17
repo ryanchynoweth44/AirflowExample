@@ -1,4 +1,4 @@
-## Creating a Simple Data Pipeline with Apache Airflow
+# Creating a Data Pipeline with Apache Airflow and Azure Machine Learning Services
 
 Deploying data pipelines in containers is an easy way to manage dependencies, orchestrate workflows, and schedule your jobs. When deploying data pipelines as containers I will write my Python code using the Azure Machine Learning service (Azure ML Service) since it allows for easy configuration and security of web services. For the sake of this demo we will be borrowing code from a recent [blog post](https://ryansdataspot.com/2019/03/14/data-analytics-data-engineering-and-containers/) of mine where I walk developers through the process of deploying Python code as containers in Azure. 
 
@@ -11,7 +11,7 @@ To provide a quick overview for this section of our Apache Airflow demo we will:
 1. Develop a DAG to execute our data extractor every 10 minutes. 
 1. Deploy code and resources to Azure
 
-### Creating Azure Resources
+## Creating Azure Resources
 
 1. First we will want to create an Azure Machine Learning Service Workspace (Azure ML Workspace). Navigate to [Azure](https://portal.azure.com) to create the resource. Please use the Azure ML [documentation](https://docs.microsoft.com/en-us/azure/machine-learning/service/setup-create-workspace) for more detailed instructions. Your Azure 
 
@@ -24,7 +24,7 @@ To provide a quick overview for this section of our Apache Airflow demo we will:
     - Check out access control rules [here.](https://docs.microsoft.com/en-us/azure/data-lake-store/data-lake-store-access-control)  
 
 
-### Data Extractor
+## Data Extractor
 
 We will be borrowing the [code](https://github.com/ryanchynoweth44/DataPipelinesUsingContainers/blob/master/code/application/extract_data.py) from a previous demo I created where we extract weather data from various locations every 10 minutes, however, the code will need a few edits in order to get it ready for Azure ML. 
 
@@ -235,7 +235,7 @@ We will be borrowing the [code](https://github.com/ryanchynoweth44/DataPipelines
     We have now deployed a data extractor web service using the Azure Machine Learning service. Please note that while this may seem to create more overhead, it does make it easier to manage when data transforms or extractions are more complex. 
 
 
-### Scheduling, Monitoring, and Managing our Data Extractor
+## Scheduling, Monitoring, and Managing our Data Extractor
 
 Now that we have developed and deployed a data extraction pipeline in Azure, we need to schedule the execution and ensure that it is running successfully. To do so we will use a few generic Python tasks to create and schedule an Airflow DAG. 
 
@@ -302,7 +302,7 @@ Now that we have developed and deployed a data extraction pipeline in Azure, we 
 1. In addition to the two scripts above, we will want to copy and paste the `app_config.conf` and `app_manager.py` files into the `tasks` folder. This may seem redundent but keep in mind that the data extractor is decoupled and deployed separate from our Airflow DAGs, and web service data pipelines may be in a completely separate repository.  
 
 
-### Running Airflow Locally
+## Running Airflow Locally
 
 Now that you have developed your data extractor and DAG to execute, lets run Airflow locally to see it in action. Please note that you will need to run Airflow from the [Ubuntu Virtual Machine](./01_CreateUbuntuVM.md) we created in the first step of this walk through. 
 
@@ -320,7 +320,12 @@ Now that you have developed your data extractor and DAG to execute, lets run Air
     ```
     airflow initdb
     ```
-1. In the `airflow.cfg` file change the line `load_examples = True` to `False`.  
+1. In the `airflow.cfg` make the following changes: 
+    ```
+    load_examples = False
+    catch_up_by_default = False
+    dags_are_paused_at_creation = False 
+    ``` 
 
 1. Start your Airflow Webserver in one of your prompts. Then navigate to localhost:8080 using a web browser. 
     ```
@@ -332,11 +337,4 @@ Now that you have developed your data extractor and DAG to execute, lets run Air
     ```
 
 Now that airflow is running you should be able to see new weather data files in your Azure Data Lake Store!
-
-### Deploying Airflow to Azure
-
-To deploy Airflow in Azure using PaaS services, we will deploy using an [Azure QuickStart Template](https://github.com/savjani/azure-quickstart-templates/tree/master/101-webapp-linux-airflow-postgresql) that I discovered from this [Microsoft Blog](https://azure.microsoft.com/en-us/blog/deploying-apache-airflow-in-azure-to-build-and-run-data-pipelines/). To start the deployment you can click [here](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsavjani%2Fazure-quickstart-templates%2Fmaster%2F101-webapp-linux-airflow-postgresql%2Fazuredeploy.json).  
-
-
-
 
