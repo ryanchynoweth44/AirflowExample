@@ -311,7 +311,7 @@ Now that you have developed your data extractor and DAG to execute, lets run Air
     conda activate airflow
     ```
 
-1. Next we want to set our Airflow Home Directory to the same directory on both prompts. I would recommend using the parent directory of your `dags` folder. In my case it is the `code` folder.  
+1. Next we want to set our Airflow Home Directory to the same directory on both prompts. I would recommend using the parent directory of your `dags` folder. In my case it is the `code\AirflowContainer` folder.  
     ```
     export AIRFLOW_HOME="<YOUR PATH>
     ```

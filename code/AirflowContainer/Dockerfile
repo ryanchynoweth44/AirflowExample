@@ -1,10 +1,18 @@
 FROM puckel/docker-airflow
 
 
-CMD sudo mkdir -p ${AIRFLOW_HOME}/dags
+ARG AIRFLOW_VERSION=1.10.2
+ARG AIRFLOW_HOME=/usr/local/airflow
+ARG AIRFLOW_DEPS=""
+ARG PYTHON_DEPS=""
 
-COPY ./dags ${AIRFLOW_HOME}/dags/
-COPY . .
+# COPY . /${AIRFLOW_HOME}
+COPY /dags /usr/local/airflow/dags
+COPY requirements.txt /usr/local/airflow
 
-# RUN pip install -r requirements.txt
+
+# USER airflow
+WORKDIR ${AIRFLOW_HOME}
 RUN pip install --user -r requirements.txt
+# ENTRYPOINT ["/entrypoint.sh"]
+# CMD ["webserver"] # set default arg for entrypoint
