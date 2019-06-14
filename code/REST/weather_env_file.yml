@@ -15,3 +15,5 @@ dependencies:
   - datetime
   - time
 - numpy
+channels:
+- conda-forge

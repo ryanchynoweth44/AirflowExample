@@ -1,6 +1,6 @@
 # Deploying Airflow Solutions in Azure
 
-So far in this walkthrough we have developed and tested our DAGs locally by running airflow commands in the command line. Hopefully by now you have a solid understanding of some of the Apache Airflow capabilities and how to develop data solutions using it, but how do you get from your Ubuntu VM to production? My favorite way of deploying an Airflow solution is using [Docker](https://www.docker.com/). 
+So far in this walkthrough we have developed and tested our DAGs locally by running airflow commands in the command line. Hopefully by now you have a solid understanding of some of the Apache Airflow capabilities and how to develop data solutions using it, but how do you get from your Ubuntu VM to production? My favorite way of deploying an Airflow solution is using [Docker](https://www.docker.com/). If you do not have it installed on your Ubuntu machine run `sudo apt install docker`.  
 
 When deploying Apache Airflow with Docker the current standard image is `puckel/docker-airflow`, and the repository is available on [GitHub](https://github.com/puckel/docker-airflow). The main way that developers will use the `puckel/docker-airflow` image is to deploy the airflow application by following the instructions from GitHub README, then use docker volumes to persist the DAG files to the Docker containers. Volumes are a great way to manage your airflow DAGs because they easily allow users to test jobs on different environments and simply move the scripts from one volume to another to add it to the environment and get picked up by the airflow scheduler. We will walk through a Volume Deployment in the [next section](./07_DeployAirflowWithVolumes.md)
 
@@ -80,15 +80,39 @@ Another way to deploy Apache Airflow with `puckel/docker-airflow` is to add the 
 1. Now check out your Airflow container running on [localhost:8080](http://localhost:8080)!
 
 
-## Deploy Airflow with Azure Pipelines
+## Deploying our Container Using Azure Pipelines
 
-We have gone through all the steps manually to build and run a docker image on our local machines. Lets try deploying our container to Azure Container Instance (ACI) using the Azure Pipelines inside of Azure DevOps. Please note that we are deploying to ACI for the sake of this demo, I typically recommend users deploy to ACI for dev and test environments and use an Azure Kubernetes Service for production deployments. 
+We have built a container and ran it on our local machines. Lets try deploying our container to Azure Container Instance (ACI) using Azure DevOps. Please note that we are deploying to ACI for this demo, it is typically recommended users deploy to ACI for dev and test environments and use an Azure Kubernetes Service for production deployments. 
 
-1. Create Azure Resources
+1. First, you will need an Azure DevOps Team Project. If you do not have a project available you can follow these [instructions](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/create-organization?view=azure-devops) to create an organization, please note the first 5 users are free. Then create an Azure DevOps Team Project by following these [instructions](https://docs.microsoft.com/en-us/azure/devops/organizations/projects/create-project). 
 
-1. Add your code to source control
+1. Once you have a team project you will need to commit your code to source control. There are a handful of options available to you, but I would recommend pushing your code to either GitHub or commiting it to an [Azure DevOps Git repository](https://docs.microsoft.com/en-us/azure/devops/repos/git/creatingrepo?view=azure-devops). I will be connecting my GitHub repository to my Azure DevOps account to deploy my code.    
 
-1. Create a build
+1. Once your code is in a repository, we will create a build pipeline that builds our docker container and pushes it to our Azure Container Registry.   
+    ![](./imgs/CreateBuild.PNG)
 
-1. 
+
+1. Since my code is on GitHub I will select my repository source for GitHub, but as you can see Azure Pipelines can connect to practically any Git repository.  
+    ![](./imgs/SelectGitHub.PNG)
+
+1. Next we will use the Docker container build template.   
+    ![](./imgs/DockerBuild.PNG)
+
+1. Select the "Build an Image" task in our build template. Provide the path to your Dockerfile in your repository. 
+    ![](./imgs/BuildImageTask.PNG)
+
+1. You will need to connect your Azure subscription as well by clicking the "+New" button. The image below shows how we can use the Service Principal Authentication connection with our existing values in our `app_config.conf` file, please provide values to connect. We will reuse the Azure Container Registry that was created when we deployed our Azure Machine Learning Web Service.  
+    ![](./imgs/ConnectToAzureSub.PNG)
+
+1. Next we will want to push our image to Azure Container Registry so that we can deploy the image in our Release Pipeline. Simply provide the Azure Subscript and the Container Registry and leave default values for the rest of the fields.    
+    ![](./imgs/PushImage.PNG)
+
+
+1. Click "Save & queue" at the top to run the build.  
+
+1. Now we need to create a release. However, before we create a release naviagate the Azure Portal to create a new Web App Service.  
+    ![](./imgs/WebApp.PNG)
+
+1. Create new release and select the "Azure App Service deployment template.  
+    ![](./imgs/AppServiceDeploy.PNG)
 

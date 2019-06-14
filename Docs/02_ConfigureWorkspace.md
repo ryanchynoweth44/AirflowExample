@@ -24,6 +24,7 @@ In this demo we will be coding in Python, and using the Anaconda distribution so
     ```
     pip install apache-airflow
     ```
+    Please note that if you get an `unable to execute gcc` error, run `sudo apt-get install gcc` then rerun the pip installation of airflow above.  
 
 Airflow is now installed and set up on your machine! Before we continue let's cover a few of basic details of apache airflow. 
 - **Airflow Home Directory**: The airflow home directory contains the configuration, logs, and dags for your instance. If you are in development it will also contain the SQLite database. By default it is set to your root directory but we can set it to any directory we wish with the following command.  
