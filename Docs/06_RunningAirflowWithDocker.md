@@ -1,4 +1,4 @@
-# Deploying Airflow Solutions in Azure
+# Running Airflow in Docker
 
 So far in this walkthrough we have developed and tested our DAGs locally by running airflow commands in the command line. Hopefully by now you have a solid understanding of some of the Apache Airflow capabilities and how to develop data solutions using it, but how do you get from your Ubuntu VM to production? My favorite way of deploying an Airflow solution is using [Docker](https://www.docker.com/). If you do not have it installed on your Ubuntu machine run `sudo apt install docker`.  
 
@@ -80,39 +80,6 @@ Another way to deploy Apache Airflow with `puckel/docker-airflow` is to add the 
 1. Now check out your Airflow container running on [localhost:8080](http://localhost:8080)!
 
 
-## Deploying our Container Using Azure Pipelines
-
-We have built a container and ran it on our local machines. Lets try deploying our container to Azure Container Instance (ACI) using Azure DevOps. Please note that we are deploying to ACI for this demo, it is typically recommended users deploy to ACI for dev and test environments and use an Azure Kubernetes Service for production deployments. 
-
-1. First, you will need an Azure DevOps Team Project. If you do not have a project available you can follow these [instructions](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/create-organization?view=azure-devops) to create an organization, please note the first 5 users are free. Then create an Azure DevOps Team Project by following these [instructions](https://docs.microsoft.com/en-us/azure/devops/organizations/projects/create-project). 
-
-1. Once you have a team project you will need to commit your code to source control. There are a handful of options available to you, but I would recommend pushing your code to either GitHub or commiting it to an [Azure DevOps Git repository](https://docs.microsoft.com/en-us/azure/devops/repos/git/creatingrepo?view=azure-devops). I will be connecting my GitHub repository to my Azure DevOps account to deploy my code.    
-
-1. Once your code is in a repository, we will create a build pipeline that builds our docker container and pushes it to our Azure Container Registry.   
-    ![](./imgs/CreateBuild.PNG)
 
 
-1. Since my code is on GitHub I will select my repository source for GitHub, but as you can see Azure Pipelines can connect to practically any Git repository.  
-    ![](./imgs/SelectGitHub.PNG)
-
-1. Next we will use the Docker container build template.   
-    ![](./imgs/DockerBuild.PNG)
-
-1. Select the "Build an Image" task in our build template. Provide the path to your Dockerfile in your repository. 
-    ![](./imgs/BuildImageTask.PNG)
-
-1. You will need to connect your Azure subscription as well by clicking the "+New" button. The image below shows how we can use the Service Principal Authentication connection with our existing values in our `app_config.conf` file, please provide values to connect. We will reuse the Azure Container Registry that was created when we deployed our Azure Machine Learning Web Service.  
-    ![](./imgs/ConnectToAzureSub.PNG)
-
-1. Next we will want to push our image to Azure Container Registry so that we can deploy the image in our Release Pipeline. Simply provide the Azure Subscript and the Container Registry and leave default values for the rest of the fields.    
-    ![](./imgs/PushImage.PNG)
-
-
-1. Click "Save & queue" at the top to run the build.  
-
-1. Now we need to create a release. However, before we create a release naviagate the Azure Portal to create a new Web App Service.  
-    ![](./imgs/WebApp.PNG)
-
-1. Create new release and select the "Azure App Service deployment template.  
-    ![](./imgs/AppServiceDeploy.PNG)
-
+We have built a container and ran it on our local machines, but now what? How do you actually use this in production for your data science and data engineering workflows? My original thought was to do a demo that walks developers through the process of deploying the container we created in Azure, which would work great. However, I would recommend organizations visit the Azure marketplace for the [Bitnami Apache Airflow Solution on Azure](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.airflow-multitier?tab=Overview). The product runs on virtual machines and comes equiped with standard security and tools to help manage your data workflows.  
