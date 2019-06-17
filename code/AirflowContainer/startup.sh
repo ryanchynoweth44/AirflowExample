@@ -1,0 +1,1 @@
+docker-compose -f docker-compose-Azure-LocalExecutor.yml up -d
