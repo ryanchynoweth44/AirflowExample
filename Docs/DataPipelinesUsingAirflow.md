@@ -1,4 +1,4 @@
-## Data Pipelines Using Airflow
+# Data Pipelines Using Airflow
 
 I previously wrote a [blog](https://ryansdataspot.com/2019/03/14/data-analytics-data-engineering-and-containers/) and [demo](https://github.com/ryanchynoweth44/DataPipelinesUsingContainers) discussing how and why data engineers should deploy pipelines using containers. One slight disadvantage to deploying data pipeline containers is the managing, monitoring, and scheduling of these activities can be a little bit of a pain. One of the most popular tools out there for solving this is [Apache Airflow](https://airflow.apache.org/). Apache Airflow is a platform to programmatically develop, schedule, and monitor workflows. Workflows are defined as code, making them easy to maintain, test, deploy, and collaborate across a team. 
 
