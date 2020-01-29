@@ -9,12 +9,12 @@ This repository aims to provide an end to end example of [Apache Airflow](http:/
 
 
 ## Blog
-This demo is accompanied with a [blog]() discussing why data engineers and data scientists should use Apache Airflow to schedule, monitor, orchestrate, and create data pipelines. 
+This demo is accompanied with a [blog](https://github.com/ryanchynoweth44/AirflowExample/blob/master/Docs/DataPipelinesUsingAirflow.md) discussing why data engineers and data scientists should use Apache Airflow to schedule, monitor, orchestrate, and create data pipelines. 
 
 
 ## Demo
 The demo is broken into logical sections. Please complete in the following order:  
-1. [Create Ubuntu VM](https://ryansdataspot.com/2019/05/07/linux-development-from-a-windows-guy/)
+1. [Create Ubuntu VM](https://github.com/ryanchynoweth44/AirflowExample/blob/master/Docs/01_CreateUbuntuVM.md)
     - Note, I will be using a Hyper-V Virtual Machine on my local computer
 
 1. [Configure workspace](./Docs/02_ConfigureWorkspace.md) 
