@@ -1,6 +1,7 @@
 # Apache Airflow Example
 This repository aims to provide an end to end example of [Apache Airflow](http://airflow.apache.org/index.html) for developers who are unfamiliar with it. Apache Airflow is a platform to programmatically author, schedule, and monitor workflows. Engineers can use airflow to create DAGs that execute tasks and visualize the pipeline.  
 
+PLEASE NOTE THAT THIS REPOSITORY IS NOT ACTIVELY MAINTAINED, BUT WILL BE UPDATED AS ISSUES ARE CREATED.  
 
 ## Requirements
 - Basic Knowledge of Python
